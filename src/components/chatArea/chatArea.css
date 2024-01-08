@@ -1,0 +1,10 @@
+.chatArea{
+    flex: 1;
+    
+}
+
+.messageContent{
+display: flex;
+flex-direction: column;
+background-color: #d3d3d3;
+}

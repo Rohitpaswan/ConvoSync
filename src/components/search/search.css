@@ -1,0 +1,57 @@
+.userChat{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #214b58;
+    width: 100%;  
+}
+
+
+.searchForm{
+    text-align: center;
+    padding: .4rem 0;
+}
+.searchForm input{
+    width: 94%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+    height: 24px;
+    padding: .1 .4rem .1 .4rem;
+    text-align: center;
+    overflow: hidden;
+    background-color: #ffff;
+}
+
+.searchForm input:hover{
+    border: 1px solid #d3d3d3;
+    background-color: #d3d3d3;
+}
+
+.userAvatar{
+    width: 30%;
+    padding-left: 10px;
+}
+
+.userAvatar .userImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.messageContent{
+display: flex;
+width: 100%;
+
+}
+
+.messageContent .username{
+
+   
+    color: #ffffff;
+}
+
+.userChat:hover{
+    background-color: #0a2f3b;
+    cursor: pointer;
+}

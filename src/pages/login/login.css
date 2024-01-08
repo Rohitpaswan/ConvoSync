@@ -1,0 +1,148 @@
+
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, .9); /* Set section background color with transparency */
+    
+   
+}
+
+.wrapper{
+    width: 90%;
+    max-width: 450px; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: rgba(29, 73, 108, 0.9);/* Adjust the alpha value to change transparency */
+    
+    
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 25px;
+    margin: 30px 0;
+    color: #000;
+ 
+}
+
+.input-box input{
+    background-color: #fdf9f9;
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid transparent;
+   
+}
+
+.input-box input:hover{
+    border: 1px solid #e8e8e8;
+    background-color: lightgray;
+}
+.input-box .icon{
+    font-size: 22px;
+    position: absolute;
+    background-color: none;
+    color: #000;
+    top: 18%;
+    right: 4px;
+   
+}
+
+.remeber-forgot{
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.remeber-forgot a:hover{
+text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    text-align: center;
+}
+
+.login-btn button{
+    padding: .4rem 1.5rem;
+    margin: 15px;
+    width: 70%;
+    border-radius: 8px;
+    color: #000;
+    background-color: #ffffffee;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.login-btn button:hover{
+    cursor: pointer;
+    background-color: lightgray;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register-link{
+    text-align: center;
+    margin-bottom: 18px;
+
+}
+.register-link .sign-in{
+    text-decoration: none;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.register-link .sign-in:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+
+
+/* Moble */
+
+@media (max-width : 760px){
+    .wrapper{
+        width: 80%;
+    }
+    .input-box input {
+        padding: 1rem 1rem; /* Adjusted padding for smaller screens */
+    }
+
+    .login-btn button {
+        width: 80%;
+    }
+}
+
+@media (max-width : 480px){
+  
+    .input-box input {
+        margin-bottom: 10px; 
+        padding-right: 35px;
+        border:none ;
+       
+    }
+ .remember-forgot {
+        margin-top: 5px; 
+    }
+    .login-btn button{
+        width: 70%;
+    }
+}

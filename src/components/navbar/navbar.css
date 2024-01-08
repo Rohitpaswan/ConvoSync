@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #cbcbcb;
+    padding: 7px;
+    background-color: lightgray;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.logo-img {
+    width: 30%;
+
+}
+
+.logo-img img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+
+}
+
+.user-name {
+    display: inline-block;
+    padding: 0px 2px;
+    margin-left: 8px;
+    max-width: 50px;
+}
+
+.logout-btn{
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    padding: 8px
+}

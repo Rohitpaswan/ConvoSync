@@ -1,1 +1,22 @@
-.
+.img-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+
+    gap: 5px;
+}
+
+.img-upload label {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.img-upload label:hover {
+    color: #bcbcbc;
+}
+
+.upload-img {
+    font-size: 28px;
+
+}

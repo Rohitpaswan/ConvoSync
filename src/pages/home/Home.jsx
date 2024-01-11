@@ -1,9 +1,6 @@
-
 import Sidebar from '../../components/sidebar/Sidebar'
-
-import './home.css'
-
 import ChatArea from '../../components/chatArea/ChatArea'
+import './home.css'
 
 
 const Home = () => {

@@ -4,19 +4,11 @@ import { IoMdLock } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FcAddImage } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { app } from "../../firebase";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";  
+import {auth ,storage, db} from "../../firebase"
+import { ref , uploadBytesResumable , getDownloadURL } from "firebase/storage";
 import { useState } from "react";
+import { setDoc, doc } from "firebase/firestore"
 import "./signup.css";
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -27,49 +19,40 @@ const Signup = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-
     await signUpWithEmailAndPassword(email, password);
   };
 
-  //Auth
-  const signUpWithEmailAndPassword = async (email, password) => {
-    const auth = getAuth();
+  //Authecation function
+  const signUpWithEmailAndPassword = async () => {
+  
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
+      const response = await createUserWithEmailAndPassword(auth,email, password); //create user
 
-     
-        const storage = getStorage();
-        const storageRef = ref(storage, `${username}_${new Date().getTime()}`);
-        const uploadTask = uploadBytesResumable(storageRef, image);
+      // Create a unique image name
+     const date = new Date().getTime();
+     const storageRef = ref(storage, `${username + date}`);
 
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {},
-          (e) => {
-            // Handle unsuccessful uploads
-            setError(true);
-            console.log(e);
-          },
-          async () => {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            await updateProfile(user, {
-              displayName: username,
-              photoURL: downloadURL,
-            });
-          }
-        );
+     await uploadBytesResumable(storageRef, image);
+     const downloadURL = await getDownloadURL(storageRef);
+    
+     // Update profile
+     await updateProfile(response.user, {
+      username,
+      photoURL: downloadURL,
+    });
 
-        console.log(user);
-        alert("Success");
-      
-    } catch (error) {
-      console.error(error);
-      // Handle error
+    // Create user on firestore
+    await setDoc(doc(db, "users", response.user.uid), {
+      uid: response.user.uid,
+      username,
+      email,
+      photoURL: downloadURL,
+    });
+    
+      alert("Succes")
+    } catch (e) {
+      setError(true);
+      console.log(e);
     }
   };
 
@@ -141,6 +124,7 @@ const Signup = () => {
                 </Link>
               </p>
             </div>
+            {error && <span>Something went wrong</span>}
           </form>
         </div>
       </section>

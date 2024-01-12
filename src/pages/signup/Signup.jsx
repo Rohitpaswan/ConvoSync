@@ -3,12 +3,12 @@ import { FaCircleUser } from "react-icons/fa6";
 import { IoMdLock } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FcAddImage } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";  
-import {auth ,storage, db} from "../../firebase"
-import { ref , uploadBytesResumable , getDownloadURL } from "firebase/storage";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage, db } from "../../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
-import { setDoc, doc } from "firebase/firestore"
+import { setDoc, doc } from "firebase/firestore";
 import "./signup.css";
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -16,49 +16,63 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading ,setLoading] = useState(false)
+
+  const navigate = useNavigate();
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    await signUpWithEmailAndPassword(email, password);
+    await signUpWithEmailAndPassword();  
+    // console.log('submit');
+    
   };
 
-  //Authecation function
+  //Authenticate function
   const signUpWithEmailAndPassword = async () => {
-  
     try {
-      const response = await createUserWithEmailAndPassword(auth,email, password); //create user
+      const response = await createUserWithEmailAndPassword(auth,email,password);  //create user
 
       // Create a unique image name
-     const date = new Date().getTime();
-     const storageRef = ref(storage, `${username + date}`);
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${username + date}`);
 
-     await uploadBytesResumable(storageRef, image);
-     const downloadURL = await getDownloadURL(storageRef);
-    
-     // Update profile
-     await updateProfile(response.user, {
-      username,
-      photoURL: downloadURL,
-    });
+      await uploadBytesResumable(storageRef, image);
+      const downloadURL = await getDownloadURL(storageRef);
 
-    // Create user on firestore
-    await setDoc(doc(db, "users", response.user.uid), {
-      uid: response.user.uid,
-      username,
-      email,
-      photoURL: downloadURL,
-    });
-    
-      alert("Succes")
-    } catch (e) {
+      // Update profile
+      await updateProfile(response.user, {
+        displayName: username,
+        photoURL: downloadURL,
+      });
+      
+      // Create user on firestore
+      await setDoc(doc(db, "users", response.user.uid), {
+        uid: response.user.uid,
+        username,
+        email,
+        photoURL: downloadURL,
+      });
+
+      //Create empty userchat on firebase
+       await setDoc(doc(db, "userchat", response.user.uid) ,{});
+
+      alert("Succes");
+      navigate("/");
+
+    }
+   catch (e) {
       setError(true);
-      console.log(e);
+      setErrorMessage(e.code)
+     
     }
   };
 
   const handleImageChange = (e) => {
+   
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
+    
   };
   return (
     <>
@@ -115,6 +129,7 @@ const Signup = () => {
             <div className="login-btn">
               <button>Sign Up</button>
             </div>
+           
             <div className="register-link">
               <p>
                 {" "}
@@ -124,7 +139,7 @@ const Signup = () => {
                 </Link>
               </p>
             </div>
-            {error && <span>Something went wrong</span>}
+            {error && <span className="error">{errorMessage}</span>}
           </form>
         </div>
       </section>

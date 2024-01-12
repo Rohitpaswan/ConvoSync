@@ -1,21 +1,40 @@
-import {  signOut } from 'firebase/auth'
-import {auth} from  '../../firebase'
-import './navbar.css'
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import "./navbar.css";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 const Navbar = () => {
+  const navigate = useNavigate();
+  const user = useAuthContext();
+  console.log(user.displayName);
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <div className="title">
-        <span>Chat vive</span>
+        <span>Chat vive</span> 
       </div>
       <div className="user">
-        <div className='logo-img'>
-            <img src="https://picsum.photos/200/300" alt=""  /></div>
-        <span className='user-name'>Test User</span>
-        <div> <button className='logout-btn' onClick={() =>signOut(auth)}>Logout</button></div>
-       
+        <div className="logo-img">
+          <img src={user.photoURl} alt="" />
+        </div>
+        <span className="user-name">{user.displayName
+}</span>
+        <div>
+          {" "}
+          <button className="logout-btn" onClick={handleSignOut}>
+            Logout
+          </button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

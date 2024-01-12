@@ -112,7 +112,11 @@ text-decoration: underline;
     cursor: pointer;
 }
 
-
+.error{
+    display: inline-block;
+    color: #ff0000;
+    padding-left: 2rem;
+}
 
 
 

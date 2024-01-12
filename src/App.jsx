@@ -7,10 +7,15 @@ import { useAuthContext } from "./context/AuthContext";
 
 function App() {
   const user = useAuthContext();
+  console.log(user);
   const ProtectedRoute = ({ children }) => {
+    
+    console.log(user);
     if (!user) {
     return  <Navigate to="/login" />;
     }
+    // If user is authenticated, render the protected content
+  return children;
   };
 
   return (

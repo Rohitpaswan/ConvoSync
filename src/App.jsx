@@ -1,21 +1,19 @@
 import "./App.css";
 import Home from "./pages/home/Home";
-import {  Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "./context/AuthContextProvider";
 
 function App() {
-  const user = useAuthContext();
-  console.log(user);
+  const currentUser = useAuthContext();
   const ProtectedRoute = ({ children }) => {
-    
-    console.log(user);
-    if (!user) {
-    return  <Navigate to="/login" />;
+    console.log(currentUser);
+    if (!currentUser) {
+      return <Navigate to="/login" />;
     }
-    // If user is authenticated, render the protected content
-  return children;
+    // If currentUser is authenticated, render the protected content
+    return children;
   };
 
   return (
@@ -23,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/">
           <Route
-           index
+            index
             element={
               <ProtectedRoute>
                 <Home />

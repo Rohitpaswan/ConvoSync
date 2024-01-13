@@ -2,34 +2,37 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContextProvider";
+
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = useAuthContext();
-  console.log(user.displayName);
+  const currentUser = useAuthContext();
+
+  //function for logout from app
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       navigate("/login");
-    } catch (e) {
+    } 
+    catch (e) {
       console.log(e);
     }
   };
+  
   return (
     <div className="navbar">
       <div className="title">
-        <span>Chat vive</span> 
+        <span>Chat vive</span>
       </div>
       <div className="user">
         <div className="logo-img">
-          <img src={user.photoURl} alt="" />
+          <img src={currentUser.photoURl} alt="" />
         </div>
-        <span className="user-name">{user.displayName
-}</span>
+        <span className="user-name">{currentUser.displayName}</span>
         <div>
-          {" "}
           <button className="logout-btn" onClick={handleSignOut}>
-            Logout
+            {" "}
+            Logout{" "}
           </button>
         </div>
       </div>

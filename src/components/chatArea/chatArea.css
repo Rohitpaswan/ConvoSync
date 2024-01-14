@@ -1,5 +1,8 @@
 .chatArea{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+   
     
 }
 
@@ -8,3 +11,45 @@ display: flex;
 flex-direction: column;
 background-color: #d3d3d3;
 }
+
+.chatArea__header{
+    background-color: #0a2f3b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+
+}
+
+.chatArea__header .icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons .icon{
+    padding: 0 .5rem;
+    cursor: pointer;
+}
+
+.messageBox{
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    
+}
+
+.messageBox::-webkit-scrollbar {
+    width: 0.5em; /* Set width of the scrollbar */
+  }
+  
+  .messageBox::-webkit-scrollbar-thumb {
+    background-color: darkgray; /* Color of the thumb */
+    outline: 1px solid slategrey; /* Outline/border color of the thumb */
+  }
+  
+  .messageBox::-webkit-scrollbar-track {
+    background-color: #f2f2f2; /* Color of the track */
+  }

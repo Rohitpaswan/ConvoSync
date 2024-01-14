@@ -1,0 +1,47 @@
+.messageImg{
+    width: 200px;
+    height: 250px;
+}
+
+.message{
+    padding-top: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+   
+    display: flex;
+    align-items:  baseline;
+    overflow: hidden;
+   
+}
+
+.messageInfo{
+    display: flex;
+    flex-direction: column; 
+   width: 70px;
+    background-color: transparent;
+    margin-bottom: 1rem;
+    padding-top: .2rem;
+    padding-left: .4rem;
+    border-radius: 8px 0;
+    
+}
+
+.messageInfo .time{
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    color: #a9a8a8;
+   
+}
+
+.messageChat{
+  background-color: #fff;
+  border-radius: 10px 0;
+}
+.messageChat p{
+    padding: .4rem .3rem .4rem .4rem;
+    color: #000;
+    font-weight:500;
+    width: fit-content;
+   
+}

@@ -1,4 +1,38 @@
 .inputMessage{
-    height: 60px;
-    background-color: aqua;
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
 }
+
+.textbox {
+    flex: 1; /*Takes up remaining space*/
+    background-color: transparent;
+    border-radius: 5px;
+  }
+
+  .textbox input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .text__icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Style for icons */
+  .text__icons svg {
+    font-size: 24px; /* Adjust the icon size */
+    color: #333; /* Adjust the icon color */
+    cursor: pointer;
+  }
+  
+  /* Optional: Style for icon hover state */
+  .text__icons svg:hover {
+    color: #007bff; /* Adjust the hover color */
+  }

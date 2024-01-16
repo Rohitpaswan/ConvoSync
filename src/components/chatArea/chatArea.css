@@ -22,6 +22,14 @@ background-color: #d3d3d3;
 
 }
 
+
+.chatArea__header .selectUser__name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 .chatArea__header .icons{
     display: flex;
     align-items: center;

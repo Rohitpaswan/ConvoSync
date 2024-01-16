@@ -7,8 +7,9 @@ import { useAuthContext } from "./context/AuthContextProvider";
 
 function App() {
   const currentUser = useAuthContext();
+  // eslint-disable-next-line react/prop-types
   const ProtectedRoute = ({ children }) => {
-    console.log(currentUser);
+    console.log('cureent', currentUser);
     if (!currentUser) {
       return <Navigate to="/login" />;
     }

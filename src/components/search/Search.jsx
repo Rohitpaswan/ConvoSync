@@ -46,6 +46,7 @@ const Search = () => {
         : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
+      console.log("res", res);
       // console.log('ok');
       if (!res.exists()) {
         //create a chat in chats collection

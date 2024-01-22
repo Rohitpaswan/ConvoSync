@@ -30,9 +30,9 @@ const Login = () => {
 
   }
   return (
-   <>
-   <section className=" ">
-    <div className="wrapper">
+   <div className="signup">
+   <div className="signup_conatiner">
+    <div className="signup__wrapper">
       <form action="" onSubmit={handelLogin}>
         <div> <h1>Login </h1></div>
         <div className="input-box"><input type="email" placeholder="Enter Email" value ={email} onChange={(e) => setEmail(e.target.value)} />
@@ -54,8 +54,8 @@ const Login = () => {
         {error && <span className="error">Email-Password Invalid</span>}
       </form>
     </div>
-   </section>
-   </>
+   </div>
+   </div>
   );
 };
 

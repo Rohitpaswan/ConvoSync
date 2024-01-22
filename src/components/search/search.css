@@ -1,57 +1,43 @@
-.userChat{
+.searchForm{
+    width: max-content;
+    width: 100%;
     display: flex;
     align-items: center;
-    height: 50px;
-    background-color: #214b58;
-    width: 100%;  
+    justify-content: center;
+    padding-top: .8rem;
+    padding-right: 1rem;
+    padding-left: .1rem;
+    border-radius: 28px;
+    gap: 10px;
+    
 }
 
-
-.searchForm{
-    text-align: center;
-    padding: .4rem 0;
-}
-.searchForm input{
-    width: 94%;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-    height: 24px;
-    padding: .1 .4rem .1 .4rem;
-    text-align: center;
-    overflow: hidden;
-    background-color: #ffff;
-}
-
-.searchForm input:hover{
-    border: 1px solid #d3d3d3;
-    background-color: #d3d3d3;
-}
-
-.userAvatar{
-    width: 30%;
-    padding-left: 10px;
-}
-
-.userAvatar .userImg{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.messageContent{
-display: flex;
-width: 100%;
+.search__input{
+    font-size: 16px;
+    padding: .5rem 1rem .5rem 2.9rem;
+    flex: 1;
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: box-shadow 0.25s;
+    transition: background-color 0.25s;
 
 }
 
-.messageContent .username{
-
-   
-    color: #ffffff;
+.search__input::placeholder ,
+.search__icons{
+    color: rgba(0, 0 , 0, 0.35);
 }
 
-.userChat:hover{
-    background-color: #0a2f3b;
-    cursor: pointer;
+
+.search__icons{
+    font-size: 24px;
+    position: relative;
+    left: 45px;
+}
+
+.search__input:focus-within{
+  box-shadow:  0 0 2px rgba(0, 0 , 0, 0.75);
+  background-color: #f1f1f1f1;
 }

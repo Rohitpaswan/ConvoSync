@@ -26,26 +26,20 @@ const Chats = () => {
      dispatch({ type: "CHANGE_USER", payload: u });
   };
 
-  console.log(chats);
+  //console.log(chats);
   return (
     <div className='chats'>
        {
         Object.entries(chats)?.map((chat ) =>{
           return(
-            <div className="userChat" key={chat[0]}   onClick={() => handleSelect(chat[1].userInfo)}>     
+            <div className="userchat" key={chat[0]}   onClick={() => handleSelect(chat[1].userInfo)}>     
             <div className="userAvatar">
-              <img
-                src={chat[1].userInfo.photoURL}
-                className="userImg"
-                alt=""
-              />
+              <img src={chat[1].userInfo.photoURL} className="userAvatarImg" alt="username"/>
             </div>
             <div className="messageContent" >
             <span className="username">{chat[1].userInfo.displayName}</span>
-            <p>{chat[1].lastMessage?.text}</p>
-              </div>
-           
-
+            <p className="lastmeaasage">{chat[1].lastMessage?.text}</p>
+            </div>
         </div>
           ) 
         })

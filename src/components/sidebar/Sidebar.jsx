@@ -8,14 +8,14 @@ import Chats from '../chats/Chats'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
- 
-      <Navbar/>
+    <div className="sidebar__wrapper">
+    <Navbar/>
+      <div className="sidebar__menu">
       <Search/>
       <Chats/>
-
-      
-      
+      </div>
     </div>
+  </div>
   )
 }
 

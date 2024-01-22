@@ -1,13 +1,22 @@
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { BsEmojiSmile } from "react-icons/bs";
-import './input.css'
+import "./input.css";
 import { useContext, useState } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { useAuthContext } from "../../context/AuthContextProvider";
-import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { db, storage } from "../../firebase";
 import { v4 as uuid } from "uuid";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+
+
 const Input = () => {
   const currentUser = useAuthContext();
   const { data } = useContext(ChatContext);
@@ -15,11 +24,31 @@ const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  const handelSend =async() =>{
-    if(img){
+  const handleSend = async () => {
+    if (img) {
+      const storageRef = ref(storage, uuid());
+      const uploadTask = uploadBytesResumable(storageRef, img);
 
-    }
-    else{
+      uploadTask.on(
+        (error) => {
+          //TODO:Handle Error
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateDoc(doc(db, "chats", data.chatId), {
+              messages: arrayUnion({
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
+                img: downloadURL,
+              }),
+            });
+          });
+        }
+      );
+    } else {
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
@@ -28,46 +57,59 @@ const Input = () => {
           date: Timestamp.now(),
         }),
       });
+
+      await updateDoc(doc(db, "userchat", currentUser.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, "userchat", data.user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
     }
-
-    await updateDoc(doc(db, "userchat", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, "userchat", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-
     setText("");
     setImg(null);
+  };
 
-  }
   return (
-    <div className='inputMessage'>
+    <div className="inputMessage">
       <div className="textbox">
-        <input type="text" 
-        placeholder="Type something..."
-        onChange={(e) => setText(e.target.value)}
-        value={text}/>
+        <input
+          type="text"
+          placeholder="Type something..."
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        />
       </div>
 
-      <div className="text__icons">
-        <IoMdSend onClick={handelSend}/>
-        <MdOutlineFileUpload/>
-        <BsEmojiSmile/>
+      {/* <div className="text__icons">
+        <IoMdSend onClick={handelSend} />
+        <MdOutlineFileUpload />
+        <BsEmojiSmile />
+
         
+      </div> */}
+
+<div className="send">
+        <MdOutlineFileUpload/>
+        <input
+          type="file"
+          style={{ display: "none" }}
+          id="file"
+          onChange={(e) => setImg(e.target.files[0])}
+        />
+        <label htmlFor="file">
+          <img src={img} alt="" />
+        </label>
+        <button onClick={handleSend}>Send</button>
       </div>
-    
-
- 
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

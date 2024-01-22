@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 import { collection, query, where, getDocs,getDoc, setDoc, doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import {db} from "../../firebase"
 import "./search.css";
@@ -6,19 +7,22 @@ import { useAuthContext } from "../../context/AuthContextProvider";
 
 
 const Search = () => {
-  
+ 
   const [serachUser, setSearchUser] = useState("");
   const[user, setUser] = useState(null);
   const [error, setError ] = useState(false);
   const currentUser  = useAuthContext();
   const handleKey =(e) =>{
-  if(e.code ===  'Enter') handleSearch()
+    e.preventDefault()
+  // if(e.code ===  'Enter')
+   handleSearch()
 
   }
 
   //function for searching user 
   const handleSearch = async () =>{
     try{
+    
       const q = query(collection(db, "users"), where("username", "==",serachUser ));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -80,12 +84,7 @@ const Search = () => {
          });
         }
         console.log(currentUser, 'user' , user);
-     
          console.log('User chat documents updated successfully');
-       
-
-       
-
     } catch (e) { console.log(e);}
 
     setUser(null);
@@ -95,15 +94,25 @@ const Search = () => {
   
   return (
     <div className="serach">
-      <div className="searchForm">
-        <input type="text" placeholder="Find User" value={serachUser} onChange={(e) => setSearchUser(e.target.value)} onKeyDown={handleKey} />
-      </div>
+    
+<form action=""  onSubmit={handleKey}>
+ <div className="searchForm">
+  <CiSearch className="search__icons" />
+  <input
+    type="text"
+    placeholder="Search or Start chat"
+    className="search__input"
+    value={serachUser} onChange={(e) => setSearchUser(e.target.value)}
+  />
+</div>
+</form>
+
       {error && <span className="error">something went wrong</span>}
-      { user && <div className="userChat" onClick={handleSelect}>
+      { user && <div className="userchat" onClick={handleSelect}>
         <div className="userAvatar">
           <img
             src={user.photoURL}
-            className="userImg"
+            className="userAvatarImg"
             alt=""
           />
         </div>
@@ -119,3 +128,5 @@ const Search = () => {
 };
 
 export default Search;
+
+{/* */}

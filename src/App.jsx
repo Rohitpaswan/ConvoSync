@@ -1,9 +1,12 @@
 import "./App.css";
+import "./commonclass.css"
 import Home from "./pages/home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
 import { useAuthContext } from "./context/AuthContextProvider";
+import Sidebar from "./components/sidebar/Sidebar";
+import ChatArea from "./components/chatArea/ChatArea";
 
 function App() {
   const currentUser = useAuthContext();
@@ -25,12 +28,15 @@ function App() {
             index
             element={
               <ProtectedRoute>
-                <Home />
+                <Sidebar/>
               </ProtectedRoute>
             }
           />
+          <Route path="chats" element={<ChatArea/>}/>
           <Route path="Signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+
+
         </Route>
       </Routes>
     </>

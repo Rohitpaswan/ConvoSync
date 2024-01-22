@@ -75,9 +75,9 @@ const Signup = () => {
     
   };
   return (
-    <>
-      <section>
-        <div className="wrapper">
+    <div className="signup">
+      <div className="signup_conatiner">
+        <div className="signup__wrapper">
           <form action="" onSubmit={handelSubmit}>
             <div>
               <h1 style={{ fontSize: "22px" }}>Create a new Account</h1>
@@ -131,9 +131,7 @@ const Signup = () => {
             </div>
            
             <div className="register-link">
-              <p>
-                {" "}
-                Have an account?{" "}
+              <p>Have an account?
                 <Link to="/login" className="sign-in">
                   Log in
                 </Link>
@@ -142,8 +140,8 @@ const Signup = () => {
             {error && <span className="error">{errorMessage}</span>}
           </form>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 

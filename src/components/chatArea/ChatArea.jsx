@@ -2,7 +2,7 @@ import { MdCall } from "react-icons/md";
 import { FaVideo } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import Message from "../message/Message";
-import "./chatArea.css";
+// import "./chatArea.css";
 import Input from "../input/Input";
 import { useAuthContext } from "../../context/AuthContextProvider";
 import { useContext, useEffect, useState } from "react";
@@ -33,7 +33,7 @@ const ChatArea = () => {
         <div className="selectUser__name">
           <span>{data.user?.displayName}</span>
           <div className="userAvatar">
-            <img src={data.user?.photoURL} className="userImg" alt="" />
+            <img src={data.user?.photoURL} className="" alt="" />
           </div>
         </div>
 

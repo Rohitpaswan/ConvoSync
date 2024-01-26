@@ -11,28 +11,29 @@ const Search = () => {
   const [serachUser, setSearchUser] = useState("");
   const[user, setUser] = useState(null);
   const [error, setError ] = useState(false);
+
   const currentUser  = useAuthContext();
   const handleKey =(e) =>{
     e.preventDefault()
-  // if(e.code ===  'Enter')
+  
    handleSearch()
 
   }
 
-  //function for searching user 
+  // function for searching user 
   const handleSearch = async () =>{
     try{
     
       const q = query(collection(db, "users"), where("username", "==",serachUser ));
+      console.log(q);
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
       setUser(doc.data())
       });
 
-      // if(user === null)  {
-      // console.log('hh');
-      // <div>User not exist</div>}
-      console.log(user);
+      if(querySnapshot.empty) alert("No user found")
+   
+     
     }
 
     catch(e){
@@ -41,6 +42,10 @@ const Search = () => {
     }
 
   }
+
+  
+
+  
 
   const handleSelect = async () => {
     //check whether the group(chats in firestore) exists, if not create

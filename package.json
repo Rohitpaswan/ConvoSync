@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "emoji-mart": "^5.5.2",
+    "emoji-picker-react": "^4.7.1",
     "firebase": "^10.7.1",
     "install": "^0.13.0",
     "react": "^18.2.0",

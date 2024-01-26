@@ -1,10 +1,4 @@
-.inputMessage{
-   
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.2rem;
-}
+
 
 .textbox {
     flex: 1; /*Takes up remaining space*/
@@ -36,3 +30,11 @@
   .text__icons svg:hover {
     color: #007bff; /* Adjust the hover color */
   }
+
+
+
+
+
+
+
+  

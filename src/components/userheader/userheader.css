@@ -1,0 +1,47 @@
+/* Note:-styling of  userAvatar,userAvatarImg classes are in commonclass.css  */
+
+.userheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--clr-nav);
+    height: 10%;
+    padding: 0 1rem;
+    border-radius: 0 0 12px 12px;
+}
+
+.selectUser__name {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.icons .icon {
+    padding: 0 .5rem;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+@media (max-width : 480px) {
+    .icons .icon {
+        margin-right: 5px;
+        font-size: 18px;
+        margin-right: 5px;
+    }
+}
+
+@media (max-width : 370px) {
+    .selectUser__name .username {
+        display: inline-block;
+        font-size: 18px;
+    }
+}

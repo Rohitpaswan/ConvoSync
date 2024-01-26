@@ -12,7 +12,7 @@ const Sidebar = () => {
     <Navbar/>
       <div className="sidebar__menu">
       <Search/>
-      <Chats/>
+      <Chats />
       </div>
     </div>
   </div>

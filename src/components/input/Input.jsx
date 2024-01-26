@@ -1,7 +1,7 @@
 import { IoMdSend } from "react-icons/io";
-import { MdOutlineFileUpload } from "react-icons/md";
 import { BsEmojiSmile } from "react-icons/bs";
-import "./input.css";
+// import "./input.css";
+import "./input1.css";
 import { useContext, useState } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { useAuthContext } from "../../context/AuthContextProvider";
@@ -15,16 +15,23 @@ import {
 import { db, storage } from "../../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import EmojiPicker from "emoji-picker-react";
+
+
+
 
 
 const Input = () => {
   const currentUser = useAuthContext();
   const { data } = useContext(ChatContext);
-  console.log(data);
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
+  
 
-  const handleSend = async () => {
+const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const handleSend = async (e) => {
+    e.preventDefault();
+    if(text === "") return
     if (img) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -76,37 +83,56 @@ const Input = () => {
     setImg(null);
   };
 
+//handling emoji function
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker((prev) => !prev);
+  };
+
+  const handleEmojiClick = ( emojiObject) => {
+    setText((prevMessage) => prevMessage + emojiObject.emoji);
+    
+  
+  };
+  
+
   return (
     <div className="inputMessage">
-      <div className="textbox">
-        <input
-          type="text"
-          placeholder="Type something..."
-          onChange={(e) => setText(e.target.value)}
-          value={text}
-        />
-      </div>
 
-      {/* <div className="text__icons">
-        <IoMdSend onClick={handelSend} />
-        <MdOutlineFileUpload />
-        <BsEmojiSmile />
-
+        {showEmojiPicker && (
+            <div className="emoji-picker-container">
+              <EmojiPicker onEmojiClick={handleEmojiClick} />
+            </div>
+          )}
+      <div className="inputbox">
+        <div className="left__icons">
+          <BsEmojiSmile className="icon" onClick={toggleEmojiPicker} />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            id="file"
+            onChange={(e) => setImg(e.target.files[0])}
+          />
+          <label htmlFor="file">
+            <img src={img} alt="" />
+          </label>
+        </div>
+        <div className="textbox">
+          <form action="" onSubmit={handleSend}>
+            <textarea
+              type="text"
+              placeholder="Type something..."
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+             
+            />
+          </form>
         
-      </div> */}
-
-<div className="send">
-        <MdOutlineFileUpload/>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
-        <label htmlFor="file">
-          <img src={img} alt="" />
-        </label>
-        <button onClick={handleSend}>Send</button>
+        </div>
+        <div className="sendbtn">
+          <button onClick={handleSend}>
+            <IoMdSend className="icon" />
+          </button>
+        </div>
       </div>
     </div>
   );

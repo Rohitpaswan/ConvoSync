@@ -8,6 +8,7 @@ import { useAuthContext } from "./context/AuthContextProvider";
 import Sidebar from "./components/sidebar/Sidebar";
 import ChatArea from "./components/chatArea/ChatArea";
 
+
 function App() {
   const currentUser = useAuthContext();
   // eslint-disable-next-line react/prop-types

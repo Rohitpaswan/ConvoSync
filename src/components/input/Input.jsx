@@ -1,7 +1,6 @@
 import { IoMdSend } from "react-icons/io";
 import { BsEmojiSmile } from "react-icons/bs";
-// import "./input.css";
-import "./input1.css";
+import "./input.css";
 import { useContext, useState } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { useAuthContext } from "../../context/AuthContextProvider";
@@ -17,21 +16,16 @@ import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import EmojiPicker from "emoji-picker-react";
 
-
-
-
-
 const Input = () => {
   const currentUser = useAuthContext();
   const { data } = useContext(ChatContext);
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
-  
 
-const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const handleSend = async (e) => {
     e.preventDefault();
-    if(text === "") return
+    if (text === "") return;
     if (img) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -83,26 +77,22 @@ const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     setImg(null);
   };
 
-//handling emoji function
+  //handling emoji function
   const toggleEmojiPicker = () => {
     setShowEmojiPicker((prev) => !prev);
   };
 
-  const handleEmojiClick = ( emojiObject) => {
+  const handleEmojiClick = (emojiObject) => {
     setText((prevMessage) => prevMessage + emojiObject.emoji);
-    
-  
   };
-  
 
   return (
     <div className="inputMessage">
-
-        {showEmojiPicker && (
-            <div className="emoji-picker-container">
-              <EmojiPicker onEmojiClick={handleEmojiClick} />
-            </div>
-          )}
+      {showEmojiPicker && (
+        <div className="emoji-picker-container">
+          <EmojiPicker onEmojiClick={handleEmojiClick} />
+        </div>
+      )}
       <div className="inputbox">
         <div className="left__icons">
           <BsEmojiSmile className="icon" onClick={toggleEmojiPicker} />
@@ -123,10 +113,8 @@ const [showEmojiPicker, setShowEmojiPicker] = useState(false);
               placeholder="Type something..."
               onChange={(e) => setText(e.target.value)}
               value={text}
-             
             />
           </form>
-        
         </div>
         <div className="sendbtn">
           <button onClick={handleSend}>

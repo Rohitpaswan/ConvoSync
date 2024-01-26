@@ -17,7 +17,7 @@ const Signup = () => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading ,setLoading] = useState(false)
+ 
 
   const navigate = useNavigate();
 

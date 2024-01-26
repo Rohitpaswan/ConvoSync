@@ -1,6 +1,5 @@
 import "./App.css";
 import "./commonclass.css"
-import Home from "./pages/home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
@@ -36,8 +35,6 @@ function App() {
           <Route path="chats" element={<ChatArea/>}/>
           <Route path="Signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
-
-
         </Route>
       </Routes>
     </>

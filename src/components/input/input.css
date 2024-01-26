@@ -1,40 +1,174 @@
-
-
-.textbox {
-    flex: 1; /*Takes up remaining space*/
-    background-color: transparent;
-    border-radius: 5px;
-  }
-
-  .textbox input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-
-  .text__icons {
+.inputbox{
     display: flex;
-    gap: 10px;
-  }
-  
-  /* Style for icons */
-  .text__icons svg {
-    font-size: 24px; /* Adjust the icon size */
-    color: #333; /* Adjust the icon color */
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 60px;
+    outline: 1px;
+    padding-right: 22px;
+    border-radius: 10px;
+}
+
+.left__icons{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ 
+   width: 9%;
+   
+   
+}
+.left__icons .icon{
+    font-size: 22px; 
+   
+}
+
+.left__icons .icon:hover{
+    background-color: var(--clr-text-dark);
     cursor: pointer;
-  }
+
+}
+
+.textbox{
+    
+    width: 100%;
+   height: 50%;
+   
+}
+
+.textbox textarea{
+    width: 100%;
+    padding: 0 1rem;
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 20px;
+    font-weight: 500;
+   line-height: 1.2;
+   transition:  all 0.2s;
+   
+
+
   
-  /* Optional: Style for icon hover state */
-  .text__icons svg:hover {
-    color: #007bff; /* Adjust the hover color */
+}
+
+.textbox textarea::placeholder{
+    font-size: 20px;
+}
+
+
+.sendbtn button{
+    padding: .5rem 2rem;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.sendbtn .icon{
+    font-size: 22px;
+}
+
+.sendbtn button:hover{
+    cursor: pointer;
+    background-color: darkgrey;
+}
+
+.emoji-picker-container{
+    
+    position: absolute;
+    top: 14rem;
+    left: 5rem;
+    opacity: 6;
+    transition: all 0.3s ease; 
+   
+}
+
+
+
+
+@media (max-width : 945px){
+    .left__icons{
+        width: 150px;
+        padding-left: 10px;
+    
+    }
+}
+
+/* Screen size 540px */
+@media (max-width : 540px){
+ 
+    .sendbtn button{
+        padding: .3rem 1.4rem;
+
+    }
+
+    .sendbtn .icon{
+        font-size: 20px;
+    }
+      .left__icons{
+        
+        width: 100px;
+      }
+    .left__icons .icon{
+        font-size: 20px;  
+    }
+
+    .textbox textarea::placeholder{
+        font-size: 16px;
+    }
+    
+}
+
+/* Screen size 440px*/
+@media (max-width : 440px){
+    .inputbox{
+        height: 44px;
+        margin-bottom: 7px;
+        padding-right: 5px;
+    }
+    .textbox{
+        height: 22%;
+        margin-bottom: 30px;
+    }
+    .left__icons{
+        width: 40px;
+    }
+
+    .textbox textarea{
+        padding-top: 9px;
+        padding-right: 9px;
+        height: 30px;
+        font-size: 16px;
+        overflow-y: hidden;
+        
+    }
+    .textbox textarea::placeholder{
+        font-size: 14px;
+    
+    }
+
+    .sendbtn button{
+        padding: 6px;
+        width: 38px;
+        border-radius: 50%;
+        background-color: transparent;
+
+    }
+
+
+    .sendbtn button:hover{
+        cursor: pointer;
+        background-color: lightgray;
+    }
+  .sendbtn .icon{
+    font-size: 18px;
+
   }
 
+  .emoji-picker-container{
+   top: 100px;
+   left: 0px;
+   right: 0;
 
+  }
 
-
-
-
-
-  
+}

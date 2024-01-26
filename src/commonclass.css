@@ -27,10 +27,10 @@
 
 
 .signup{
-    background-color: antiquewhite;
+    background-color: var(--clr-primary);
     width: 100%;
     height: 100dvh;
-    background-image: url('./img/cover2.png');
+    background-image: url('/img/cover2.png');
     background-position: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

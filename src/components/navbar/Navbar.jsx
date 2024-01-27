@@ -7,7 +7,6 @@ import { useAuthContext } from "../../context/AuthContextProvider";
 const Navbar = () => {
   const navigate = useNavigate();
   const currentUser = useAuthContext();
-  console.log("uu" , currentUser);
 
   //function for logout from app
   const handleSignOut = async () => {
@@ -25,7 +24,6 @@ const Navbar = () => {
         <h4 className="app-name">ConvoSycn</h4>
         <div className="profile__identity">{currentUser.displayName}</div>
       </div>
-
       <div className="navbar__right">
         <div className="profileImgWrapper">
           <img src={currentUser.photoURL} alt="" className="profileImg" />

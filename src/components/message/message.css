@@ -1,60 +1,67 @@
-.message__container{
+.message__container {
     display: flex;
     background-color: transparent;
     display: flex;
     width: 90%;
     margin: 0 auto;
-    
+
+
 }
 
-.message__wrapper{
+.message__container .message__wrapper {
     display: flex;
-   max-width: 90%;
-    margin-bottom: 1rem;
+    max-width: 90%;
+    margin-bottom: 1.5rem;
     align-items: center;
     border-radius: 8px 0;
     border-radius: 18px 0 18px 0;
-    background: rgb(163,63,254);
-    background: linear-gradient(75deg, rgba(163,63,254,1) 36%, rgba(223,24,240,1) 81%);
+    /* background: linear-gradient(75deg, rgba(163,63,254,1) 36%, rgba(223,24,240,1) 81%);  */
+    background: slategray;
     word-wrap: break-word;
- 
+
 }
 
-.messageChat{
- 
+.owner .message__wrapper {
+
+    /* background: linear-gradient(45deg, rgb(101, 77, 124) 36%, rgb(156, 124, 159) 81%);    */
+    background: rgb(32, 52, 73);
+}
+
+.messageChat {
+
     max-width: 90%;
     height: fit-content;
     color: var(--clr-text);
     color: #fff;
     font-weight: 600;
     font-size: 16px;
-    padding: 10px 8px 15px ;
+    padding: 10px 8px 15px;
     word-wrap: break-word;
-    
-   
+
+
 }
 
-.sent__time{
+.sent__time {
     display: inline-block;
     font-size: 14px;
     font-weight: 500;
     color: var(--clr-text);
 }
 
-.owner{
+.owner {
     flex-direction: row-reverse;
 }
 
 
-@media (max-width : 900px){
-    .message__wrapper{
+@media (max-width : 900px) {
+    .message__wrapper {
         width: 70%;
     }
 }
 
 
-@media (max-width : 550px){
-    .message__wrapper{
+@media (max-width : 550px) {
+    .message__wrapper {
         width: 75%;
     }
 }

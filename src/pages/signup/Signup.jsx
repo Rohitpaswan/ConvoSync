@@ -57,7 +57,7 @@ const Signup = () => {
       //Create empty userchat on firebase
        await setDoc(doc(db, "userchat", response.user.uid) ,{});
 
-      alert("Succes");
+      alert("successful");
       navigate("/");
 
     }
@@ -68,8 +68,7 @@ const Signup = () => {
     }
   };
 
-  const handleImageChange = (e) => {
-   
+  const handleImageChange = (e) => {  
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
     

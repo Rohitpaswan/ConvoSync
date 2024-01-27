@@ -1,5 +1,6 @@
 import { FaCircleUser } from "react-icons/fa6";
 import { IoMdLock } from "react-icons/io";
+import { CgNotes } from "react-icons/cg";
 import './login.css'
 import { Link,useNavigate } from "react-router-dom";
 import {auth} from "../../firebase"
@@ -9,15 +10,17 @@ const Login = () => {
   const [email,setEmail] = useState('');
   const[password ,setPassword] = useState('');
   const [error, setError] = useState(false);
-  
-
+  const [isVisible,setIsVisible] = useState(false);
+  const handleNote =() =>{
+    setIsVisible(!isVisible);
+  }
   const navigate = useNavigate();
-  const handelLogin = async(e) =>{
+  const handleLogin = async(e) =>{
     e.preventDefault();
     try{
    
       await signInWithEmailAndPassword(auth, email, password);
-      alert('scuesss')    
+      alert('successful')    
       navigate('/')
 
     }
@@ -33,7 +36,7 @@ const Login = () => {
    <div className="signup">
    <div className="signup_conatiner">
     <div className="signup__wrapper">
-      <form action="" onSubmit={handelLogin}>
+      <form action="" onSubmit={handleLogin}>
         <div> <h1>Login </h1></div>
         <div className="input-box"><input type="email" placeholder="Enter Email" value ={email} onChange={(e) => setEmail(e.target.value)} />
         <FaCircleUser className="icon"/>
@@ -54,7 +57,22 @@ const Login = () => {
         {error && <span className="error">Email-Password Invalid</span>}
       </form>
     </div>
+
    </div>
+   <div className="note" >
+    <CgNotes onClick={handleNote}/>
+    {isVisible && (
+        <div className="animated-div">
+          <p>
+          <b>Note:</b>  Demo Purpose<br />
+          <i> <b>Use:</b><br />
+          - user123@gmail.com,Password: user123<br />
+          - user2123@gmail.com, Password: user123
+          </i>
+          </p>
+        </div>
+      )}
+    </div>
    </div>
   );
 };

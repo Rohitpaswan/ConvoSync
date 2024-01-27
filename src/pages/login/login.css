@@ -1,0 +1,57 @@
+
+.note{  display: inline-block;
+    position: relative;
+    top: 300px;
+    left: 140px;
+    font-size: 40px;
+    cursor: pointer;
+   
+  
+
+}
+.animated-div {
+
+    position: absolute;
+    top: -200px;
+    right: 80px;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(226, 220, 221);
+    animation: fadeIn 0.5s ease-in-out; /* Define your animation */
+    border-radius: 15px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(100px , 250px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(20px,20px);
+    }
+  }
+  
+  .animated-div p{
+    padding: .7rem;
+    font-size: 16px;
+  }
+
+  @media (max-width : 1040px){
+    .note{
+      left:70px ;
+    }
+  }
+
+  @media (max-width : 860px){
+    .note{
+      left:5px ;
+     
+    }
+  }
+  @media (max-width : 450px){
+    .animated-div{
+      top: -150px;
+      right: 40px;
+    }
+  }

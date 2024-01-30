@@ -10,7 +10,7 @@
 
 .message__container .message__wrapper {
     display: flex;
-    max-width: 90%;
+    width: 20%;
     margin-bottom: 1.5rem;
     align-items: center;
     border-radius: 8px 0;
@@ -18,11 +18,13 @@
     /* background: linear-gradient(75deg, rgba(163,63,254,1) 36%, rgba(223,24,240,1) 81%);  */
     background: slategray;
     word-wrap: break-word;
+    padding-left: 10px;
 
 }
 
 .owner .message__wrapper {
-
+    padding-left: 10px;
+    width: 20%;
     /* background: linear-gradient(45deg, rgb(101, 77, 124) 36%, rgb(156, 124, 159) 81%);    */
     background: rgb(32, 52, 73);
 }
@@ -53,15 +55,27 @@
 }
 
 
-@media (max-width : 900px) {
-    .message__wrapper {
-        width: 70%;
+@media (max-width : 1000px) {
+   .message__container .message__wrapper {
+        width: 40%;
     }
+    .owner .message__wrapper{
+    
+    width: 40%;
+    }
+
+
+
 }
 
 
-@media (max-width : 550px) {
-    .message__wrapper {
-        width: 75%;
+@media (max-width : 600px) {
+    .message__container  .message__wrapper {
+        width: 60%;
+      
     }
+    .owner .message__wrapper{
+    
+        width: 60%;
+        }
 }

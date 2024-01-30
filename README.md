@@ -59,7 +59,7 @@ Experience ConvoSync firsthand by accessing our app!
 **Clone the project**
 
 ```bash
-  git clone https://github.com/Rohitpaswan/EasyBuys.git
+  git clone https://github.com/Rohitpaswan/ConvoSync.git
 ```
 
 **Install Dependencies**

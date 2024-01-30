@@ -2,26 +2,22 @@
 
 Welcome to ConvoSync, a real-time chatting application built with React and Firebase Firestore! This application allows users to engage in seamless conversations with real-time message synchronization.
 
+## Table of Contents
+
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#Installation)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Screenshots
 
 ![Authentication](/public/readmeImg/login.png)
 _User Authentication: Sign up securely and log in to access chat features._
 
-![Chatting-Desktop](/public/readmeImg/chatting.png) ![Chatting-Mobile](/public/readmeImg/chattP.png)
+![Chatting-Desktop](/public/readmeImg/chatting.png)
 _Real-time Chat: Engage in real-time conversations with instant message synchronization._
-
-## Table of Contents
-
-- Features
-- Technologies Used
-- Getting Started
-  - Clone the Repository
-  - Install Dependencies
-  - Set up Firebase Project
-  - Configure Firebase
-  - Start Development Server
-- Contributing
-- License
 
 ## Features
 
@@ -56,7 +52,7 @@ Experience ConvoSync firsthand by accessing our app!
 - **Firebase Firestore:** Real-time database for storing chat messages and user data.
 - **HTML & CSS:** : Structure and styling of the application.
 
-## Run Locally
+## Installation
 
 ### Follow these steps to get started with ConvoSync:
 
@@ -70,8 +66,22 @@ Experience ConvoSync firsthand by accessing our app!
 
 ```bash
   cd convosync
-  npm install
+```
 
+```base
+  npm install
+```
+
+```base
+  npm i react-router-dom
+```
+
+```base
+  npm i react-icons
+```
+
+```base
+  npm i emoji-picker-react
 ```
 
 **Set up Firebase Project**
@@ -95,7 +105,7 @@ Experience ConvoSync firsthand by accessing our app!
   Add Firebase configuration settings to .env
 
   VITE_FIREBASE_API_KEY= your-api-key
-  VITE_FIREBASE_PROJECT_ID = your-project-id
+  VITE_FIREBASE_PROJECT_ID= your-project-id
   VITE_FIREBASE_AUTH_DOMAIN= your-auth-domain
   VITE_FIREBASE_STORAGE_BUCKET= your-storage-bucket
   VITE_FIREBASE_MESSAGING_SENDING_ID= your-messaging-sender-id

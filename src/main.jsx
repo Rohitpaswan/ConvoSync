@@ -7,7 +7,7 @@ import AuthContextProvider from "./context/AuthContextProvider.jsx";
 import {  ChatContextProvider } from "./context/ChatContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  
     <AuthContextProvider>
       <ChatContextProvider>
         <BrowserRouter>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </ChatContextProvider>
     </AuthContextProvider>
-  </React.StrictMode>
+ 
 );

@@ -9,6 +9,9 @@ import { auth, storage, db } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
+import botDialogues from "../../utils/botDialogues.login.js";
+import botAvatar from "../../assets/avatar.jpeg"
+import Mychatbot from "../../chatbot/Mychatbot";
 import "./signup.css";
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -139,7 +142,9 @@ const Signup = () => {
             {error && <span className="error">{errorMessage}</span>}
           </form>
         </div>
+        <Mychatbot updatedSteps={botDialogues} botAvatar={botAvatar}/>
       </div>
+    
     </div>
   );
 };

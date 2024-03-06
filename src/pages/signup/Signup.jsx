@@ -9,7 +9,7 @@ import { auth, storage, db } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
-import botDialogues from "../../utils/botDialogues.login.js";
+import botDialogues from "../../utils/botDialogues.login.jsx";
 import botAvatar from "../../assets/avatar.jpeg"
 import Mychatbot from "../../chatbot/Mychatbot";
 import "./signup.css";

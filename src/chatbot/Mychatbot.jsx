@@ -1,4 +1,5 @@
 import ChatBot from "react-simple-chatbot";
+import './chatbot.css'
 const Mychatbot = ({updatedSteps ,botAvatar}) => {
   
 
@@ -9,6 +10,8 @@ const Mychatbot = ({updatedSteps ,botAvatar}) => {
       floating={true}
       steps={updatedSteps}
       enableSmoothScroll={true}
+      hideUserInput={true}
+      disableUserInput={true}
     />
   );
 };

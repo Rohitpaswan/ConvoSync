@@ -5,8 +5,8 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import Mychatbot from "../../chatbot/Mychatbot";
-import botDialogues from "../../utils/botDialogues.login.js";
-import botAvatar from "../../assets/avatar.jpeg"
+import botDialogues from "../../utils/botDialogues.login.jsx";
+import botAvatar from "../../assets/avatar.jpeg";
 import "./login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -53,7 +53,7 @@ const Login = () => {
               <IoMdLock className="icon" />
             </div>
             <div className="remeber-forgot">
-              <a>Forgot Password</a>
+              <a>Forgot Password ?</a>
             </div>
             <div className="login-btn">
               <button>Login</button>
@@ -70,7 +70,7 @@ const Login = () => {
             {error && <span className="error">Email-Password Invalid</span>}
           </form>
         </div>
-        <Mychatbot updatedSteps={botDialogues} botAvatar={botAvatar}/>
+        <Mychatbot updatedSteps={botDialogues} botAvatar={botAvatar} />
       </div>
     </div>
   );

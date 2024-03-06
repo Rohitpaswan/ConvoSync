@@ -46,3 +46,26 @@
   padding: 0;
 }
 }
+
+
+.test {
+  width: fit-content;
+  height: fit-content;
+  background-color: red;
+  animation: heartbeat 1s infinite;
+}
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+ 
+  

@@ -58,6 +58,7 @@
     cursor: pointer;
     background-color: aliceblue;
     border: 1px solid #e8e8e8;
+    padding: .6rem 1.8rem;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 

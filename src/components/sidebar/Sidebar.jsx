@@ -14,7 +14,9 @@ const Sidebar = () => {
     <div className="sidebar__wrapper">
     <Navbar/>
       <div className="sidebar__menu">
-        <Mychatbot updatedSteps ={botDialogues} botAvatar ={botAvatar}/>
+     
+       <Mychatbot updatedSteps ={botDialogues} botAvatar ={botAvatar}/>
+    
       <Search/>
       <Chats />
       </div>

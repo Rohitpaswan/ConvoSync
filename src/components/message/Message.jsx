@@ -6,9 +6,8 @@ const Message = ({ message }) => {
 
   return (
     <div
-      className={`message__container ${
-        message.senderId === currentUser.uid && "owner"
-      }`}
+      className={`message__container ${message.senderId === currentUser.uid &&
+        "owner"}`}
     >
       {/* <div className="messageInfo">
         <div className="logo-img">

@@ -132,10 +132,12 @@
     .left__icons{
         width: 40px;
     }
-
+.textbox{
+    padding: 0;
+}
     .textbox textarea{
-        padding-top: 9px;
-        padding-right: 9px;
+       padding: 2vw;
+       padding-left: 3vw;
         height: 30px;
         font-size: 16px;
         overflow-y: hidden;
@@ -143,6 +145,7 @@
     }
     .textbox textarea::placeholder{
         font-size: 14px;
+      
     
     }
 

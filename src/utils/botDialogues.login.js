@@ -1,7 +1,3 @@
-
-const ExampleComponent = () => (
-  <button> This is an example component </button>
-)
 const botDialogues = [
   {
     id: "1",
@@ -16,8 +12,6 @@ const botDialogues = [
 
   {
     id: "3",
-    component: ExampleComponent,
- 
     options: [{ value: 1, label: "Yes Please", trigger: "4" }],
   },
   {

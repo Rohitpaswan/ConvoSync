@@ -6,7 +6,7 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import Mychatbot from "../../chatbot/Mychatbot";
-import botDialogues from "../../utils/botDialogues.login.jsx";
+import botDialogues from "../../utils/botDialogues.login.js";
 import botAvatar from "../../assets/avatar.jpeg";
 import "./login.css";
 const Login = () => {

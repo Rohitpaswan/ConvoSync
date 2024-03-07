@@ -1,5 +1,6 @@
 import { FaCircleUser } from "react-icons/fa6";
-import { IoMdLock } from "react-icons/io";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -12,6 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const[hidePassword, setHidePassword] = useState(true);
 
   const navigate = useNavigate();
   const handleLogin = async (e) => {
@@ -45,12 +47,16 @@ const Login = () => {
             </div>
             <div className="input-box">
               <input
-                type="password"
+                className="password"
+                type={hidePassword ? "password" : "text"}
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                name="password"
               />
-              <IoMdLock className="icon" />
+
+              {hidePassword ? ( <FaEye  className="icon eye" onClick={() => setHidePassword(!hidePassword)}/> ) : 
+              ( <FaEyeSlash  className="icon eye" onClick={() => setHidePassword(!hidePassword)} />)}
             </div>
             <div className="remeber-forgot">
               <a>Forgot Password ?</a>

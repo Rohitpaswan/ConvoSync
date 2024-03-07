@@ -1,6 +1,7 @@
 import "../../pages/login/login.css";
 import { FaCircleUser } from "react-icons/fa6";
-import { IoMdLock } from "react-icons/io";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FcAddImage } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +11,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
 import botDialogues from "../../utils/botDialogues.login.jsx";
-import botAvatar from "../../assets/avatar.jpeg"
+import botAvatar from "../../assets/avatar.jpeg";
 import Mychatbot from "../../chatbot/Mychatbot";
 import "./signup.css";
 const Signup = () => {
@@ -20,21 +21,24 @@ const Signup = () => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
- 
+  const [hidePassword, setHidePassword] = useState(true);
 
   const navigate = useNavigate();
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    await signUpWithEmailAndPassword();  
+    await signUpWithEmailAndPassword();
     // console.log('submit');
-    
   };
 
   //Authenticate function
   const signUpWithEmailAndPassword = async () => {
     try {
-      const response = await createUserWithEmailAndPassword(auth,email,password);  //create user
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      ); //create user
 
       // Create a unique image name
       const date = new Date().getTime();
@@ -48,7 +52,7 @@ const Signup = () => {
         displayName: username,
         photoURL: downloadURL,
       });
-      
+
       // Create user on firestore
       await setDoc(doc(db, "users", response.user.uid), {
         uid: response.user.uid,
@@ -58,23 +62,19 @@ const Signup = () => {
       });
 
       //Create empty userchat on firebase
-       await setDoc(doc(db, "userchat", response.user.uid) ,{});
+      await setDoc(doc(db, "userchat", response.user.uid), {});
 
       alert("successful");
       navigate("/");
-
-    }
-   catch (e) {
+    } catch (e) {
       setError(true);
-      setErrorMessage(e.code)
-     
+      setErrorMessage(e.code);
     }
   };
 
-  const handleImageChange = (e) => {  
+  const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
-    
   };
   return (
     <div className="signup">
@@ -106,13 +106,16 @@ const Signup = () => {
             </div>
             <div className="input-box">
               <input
-                type="password"
+                className="password"
+                type={hidePassword ? "password" : "text"}
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
               />
-              <IoMdLock className="icon" />
+
+              {hidePassword ? ( <FaEye  className="icon eye" onClick={() => setHidePassword(!hidePassword)}/> ) : 
+              ( <FaEyeSlash  className="icon eye" onClick={() => setHidePassword(!hidePassword)} />)}
             </div>
 
             <div className="img-upload">
@@ -131,9 +134,10 @@ const Signup = () => {
             <div className="login-btn">
               <button>Sign Up</button>
             </div>
-           
+
             <div className="register-link">
-              <p>Have an account?
+              <p>
+                Have an account?
                 <Link to="/login" className="sign-in">
                   Log in
                 </Link>
@@ -142,9 +146,8 @@ const Signup = () => {
             {error && <span className="error">{errorMessage}</span>}
           </form>
         </div>
-        <Mychatbot updatedSteps={botDialogues} botAvatar={botAvatar}/>
+        <Mychatbot updatedSteps={botDialogues} botAvatar={botAvatar} />
       </div>
-    
     </div>
   );
 };

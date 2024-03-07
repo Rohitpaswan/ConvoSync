@@ -38,7 +38,7 @@ const Chats = () => {
           return(
             <div className="userchat" key={chat[0]}   onClick={() => handleSelect(chat[1].userInfo)}>     
             <div className="userAvatar">
-              <img src={chat[1].userInfo.photoURL} className="userAvatarImg" alt="username"/>
+              <img src={chat[1].userInfo.photoURL || '../../../img/user.png'} className="userAvatarImg" alt="username"/>
             </div>
             <div className="messageContent" >
             <span className="username">{chat[1].userInfo.displayName}</span>

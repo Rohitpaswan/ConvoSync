@@ -7,6 +7,8 @@ import { useAuthContext } from "./context/AuthContextProvider";
 import Sidebar from "./components/sidebar/Sidebar";
 import ChatArea from "./components/chatArea/ChatArea";
 
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const currentUser = useAuthContext();
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <>
+     
       <Routes>
         <Route path="/">
           <Route

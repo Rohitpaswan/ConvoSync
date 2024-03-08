@@ -1,24 +1,40 @@
 .rsc-footer {
-    display: none;
+  display: none;
+}
+
+.rsc-float-button {
+
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
   }
 
-  .rsc-float-button{
-   
-    animation: heartbeat 1s infinite;
+  50% {
+    transform: scale(1.2);
   }
 
-  @keyframes heartbeat {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
   }
+}
 
-   .rsc-os button:hover{
-    cursor: pointer;
-  }
+
+.rsc-os button {
+  background-color: transparent;
+  border: 2px solid #8f16e0; 
+  color: #8f18de; 
+  padding: 8px 16px; 
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Combined transition property */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rsc-os button:hover {
+  cursor: pointer;
+  border: 2px solid #a95edc; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

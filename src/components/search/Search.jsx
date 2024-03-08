@@ -85,7 +85,7 @@ const Search = () => {
           },
         });
       }
-      console.log(currentUser, "user", user);
+      // console.log(currentUser, "user", user);
       console.log("User chat documents updated successfully");
     } catch (e) {
       console.log(e);

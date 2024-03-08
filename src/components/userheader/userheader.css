@@ -14,6 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    gap: 2vw;
+    
     gap: 15px;
 }
 
@@ -44,4 +46,20 @@
         display: inline-block;
         font-size: 18px;
     }
+}
+
+.status{
+    color: #e3bb1a;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-left: 1vw;
 }

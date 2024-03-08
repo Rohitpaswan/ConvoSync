@@ -13,7 +13,9 @@ import { setDoc, doc } from "firebase/firestore";
 import botDialogues from "../../utils/botDialogues.login.js";
 import botAvatar from "../../assets/avatar.jpeg";
 import Mychatbot from "../../chatbot/Mychatbot";
+import { InfinitySpin } from "react-loader-spinner";
 import "./signup.css";
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,49 +24,40 @@ const Signup = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
-
+  const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
   const handelSubmit = async (e) => {
     e.preventDefault();
     await signUpWithEmailAndPassword();
-    // console.log('submit');
   };
 
-  //Authenticate function
   const signUpWithEmailAndPassword = async () => {
     try {
+      setLoader(true);
+      setError(false);
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
-      ); //create user
-
-      // Create a unique image name
+      );
       const date = new Date().getTime();
       const storageRef = ref(storage, `${username + date}`);
-
       await uploadBytesResumable(storageRef, image);
       const downloadURL = await getDownloadURL(storageRef);
 
-      // Update profile
       await updateProfile(response.user, {
         displayName: username,
         photoURL: downloadURL,
       });
 
-      // Create user on firestore
       await setDoc(doc(db, "users", response.user.uid), {
         uid: response.user.uid,
         username,
         email,
         photoURL: downloadURL,
       });
-
-      //Create empty userchat on firebase
       await setDoc(doc(db, "userchat", response.user.uid), {});
-
-      alert("successful");
       navigate("/");
     } catch (e) {
       setError(true);
@@ -75,10 +68,22 @@ const Signup = () => {
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
+    e.target.value = "";
   };
+
   return (
     <div className="signup">
       <div className="signup_conatiner">
+        {loader && !error && (
+          <div className="loading-overlay">
+            <InfinitySpin
+              visible={true}
+              width="200"
+              color="#211551"
+              ariaLabel="infinity-spin-loading"
+            />
+          </div>
+        )}
         <div className="signup__wrapper">
           <form action="" onSubmit={handelSubmit}>
             <div>
@@ -113,11 +118,18 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
               />
-
-              {hidePassword ? ( <FaEye  className="icon eye" onClick={() => setHidePassword(!hidePassword)}/> ) : 
-              ( <FaEyeSlash  className="icon eye" onClick={() => setHidePassword(!hidePassword)} />)}
+              {hidePassword ? (
+                <FaEye
+                  className="icon eye"
+                  onClick={() => setHidePassword(!hidePassword)}
+                />
+              ) : (
+                <FaEyeSlash
+                  className="icon eye"
+                  onClick={() => setHidePassword(!hidePassword)}
+                />
+              )}
             </div>
-
             <div className="img-upload">
               <input
                 type="file"
@@ -130,11 +142,9 @@ const Signup = () => {
               <FcAddImage className="upload-img" />{" "}
               <label htmlFor="uploadImg">Add Your Avatar</label>
             </div>
-
             <div className="login-btn">
               <button>Sign Up</button>
             </div>
-
             <div className="register-link">
               <p>
                 Have an account?
